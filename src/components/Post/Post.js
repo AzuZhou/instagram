@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import Comment from '../shared/Comment'
 import Image1 from 'images/image1.jpeg'
 import { ReactComponent as OutlinedLike } from 'icons/like_outlined.svg'
 import { ReactComponent as OutlinedComment } from 'icons/comment_outlined.svg'
@@ -34,18 +35,8 @@ const Actions = styled.div`
     margin-left: 15px;
   }
 `
-const Comment = styled.div`
+const Caption = styled.div`
   width: 100%;
-`
-const Caption = styled.p`
-  text-align: left;
-`
-
-const Commenter = styled.a`
-  margin-right: 10px;
-  font-weight: bold;
-  text-decoration: none;
-  color: indigo;
 `
 
 const Post = () => (
@@ -60,13 +51,9 @@ const Post = () => (
       <OutlinedShare />
     </Actions>
 
-    <Comment>
-      <Caption>
-        <Commenter href="#">azu.zhou</Commenter>
-        This is a comment. This is a comment. This is a comment. This is a comment. This is a
-        comment. This is a comment. This is a comment. This is a comment.
-      </Caption>
-    </Comment>
+    <Caption>
+      <Comment />
+    </Caption>
   </Container>
 )
 
