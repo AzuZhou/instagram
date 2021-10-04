@@ -1,10 +1,31 @@
-import './App.css'
-import Feed from './pages/Feed'
+import Home from './pages/Home'
+import { createGlobalStyle } from 'styled-components'
 
-function App() {
+const GlobalStyle = createGlobalStyle`
+  body {
+    box-sizing: border-box;
+    font-family: 'Noto Sans Display', sans-serif;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:visited, &:active, &:focus {
+      color: initial;
+    }
+    
+  }
+`
+
+const App = () => {
   return (
-    <div className="App">
-      <Feed />
+    <div>
+      <GlobalStyle />
+      <Home />
     </div>
   )
 }
