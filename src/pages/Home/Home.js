@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Feed from '../../components/Feed'
+import Feed from 'components/Feed'
 
 const Container = styled.div``
 

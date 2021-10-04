@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import Image1 from '../../images/image1.jpeg'
-import { ReactComponent as OutlinedLike } from '../../icons/like_outlined.svg'
-import { ReactComponent as OutlinedComment } from '../../icons/comment_outlined.svg'
-import { ReactComponent as OutlinedShare } from '../../icons/share_outlined.svg'
+import Image1 from 'images/image1.jpeg'
+import { ReactComponent as OutlinedLike } from 'icons/like_outlined.svg'
+import { ReactComponent as OutlinedComment } from 'icons/comment_outlined.svg'
+import { ReactComponent as OutlinedShare } from 'icons/share_outlined.svg'
 
 const Container = styled.article`
   width: 500px;
