@@ -33,6 +33,10 @@ const GlobalStyle = createGlobalStyle`
       color: initial;
     }
   }
+
+  textarea {
+  resize: none;
+}
 `
 
 export default GlobalStyle
