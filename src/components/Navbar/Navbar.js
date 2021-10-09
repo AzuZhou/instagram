@@ -33,15 +33,22 @@ const User = styled.div`
   background-color: grey;
 `
 
+const NavbarSpace = styled.div`
+  height: 55px;
+`
+
 const Navbar = () => (
-  <Container>
-    <div>
-      <Logo href="#">
-        <h1>Instagram</h1>
-      </Logo>
-      <User />
-    </div>
-  </Container>
+  <>
+    <Container>
+      <div>
+        <Logo href="#">
+          <h1>Instagram</h1>
+        </Logo>
+        <User />
+      </div>
+    </Container>
+    <NavbarSpace />
+  </>
 )
 
 export default Navbar

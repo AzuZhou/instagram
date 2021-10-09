@@ -8,15 +8,9 @@ const Container = styled.div`
   align-items: center;
 `
 
-const NavbarSpace = styled.div`
-  height: 55px;
-`
-
 const Home = () => (
   <Container>
     <Navbar />
-    <NavbarSpace />
-
     <Feed />
   </Container>
 )
