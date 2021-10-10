@@ -2,19 +2,21 @@ import styled from 'styled-components'
 
 const Container = styled.p`
   text-align: left;
+  margin-bottom: 4px;
 `
 
 const Commenter = styled.a`
-  margin-right: 10px;
+  margin-right: 8px;
   font-weight: bold;
   text-decoration: none;
-  color: indigo;
 `
-const Comment = () => (
+
+// TODO: add profile link
+
+const Comment = ({ userName, text }) => (
   <Container>
-    <Commenter href="#">azu.zhou</Commenter>
-    This is a comment. This is a comment. This is a comment. This is a comment. This is a comment.
-    This is a comment. This is a comment. This is a comment.
+    <Commenter href="#">{userName}</Commenter>
+    {text}
   </Container>
 )
 

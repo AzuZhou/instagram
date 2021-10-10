@@ -11,12 +11,9 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
     font-family: 'Noto Sans Display', sans-serif;
     color: ${COLORS.black};
-  }
-
-  body {
     margin: 0;
   }
-  
+
   h1, h2, h3, h4, h5, h6, p {
     margin: 0;
   }

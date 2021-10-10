@@ -30,11 +30,13 @@ const User = styled.div`
   height: 22px;
   width: 22px;
   border-radius: 50%;
-  background-color: grey;
+  background-color: ${COLORS.lightGrey};
 `
 
 const NavbarSpace = styled.div`
   height: 55px;
+
+  margin-bottom: 30px;
 `
 
 const Navbar = () => (
