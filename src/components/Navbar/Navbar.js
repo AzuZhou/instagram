@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { signOut } from 'firebase/auth'
-import { Popover, Typography } from '@mui/material'
+import { Popover } from '@mui/material'
 import styled from 'styled-components'
 
 import { auth } from 'firebaseConfig'
@@ -106,7 +106,7 @@ const Navbar = () => {
             }}
           >
             <PopoverLinks>
-              <PopoverLink onClick={handleLogOut}>Log out</PopoverLink>
+              <PopoverLink onClick={handleLogOut}>Log Out</PopoverLink>
             </PopoverLinks>
           </Popover>
         </div>

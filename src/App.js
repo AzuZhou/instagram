@@ -30,8 +30,6 @@ const App = () => {
     return () => unsubscribe()
   }, [user])
 
-  // TODO: Move Navbar here
-
   return (
     <Router>
       <div>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Box, Input, Button } from '@mui/material'
 
@@ -27,11 +28,20 @@ const Form = styled.form`
   }
 
   > div {
-    height: 200px;
+    height: 140px;
 
     display: inherit;
     flex-direction: inherit;
     justify-content: space-evenly;
+  }
+`
+
+const GoToSignUp = styled.p`
+  margin-top: 10px;
+  text-align: center;
+
+  > a {
+    font-weight: bold;
   }
 `
 
@@ -67,6 +77,11 @@ const LogIn = () => {
         </div>
         <Button onClick={handleLogIn}>login</Button>
       </Form>
+
+      <GoToSignUp>
+        New to Instagram?&nbsp;
+        <Link to="/sign-up">Create an account!</Link>
+      </GoToSignUp>
     </Box>
   )
 }
