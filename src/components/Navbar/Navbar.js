@@ -1,4 +1,9 @@
+import { useState } from 'react'
+import { signOut } from 'firebase/auth'
+import { Popover, Typography } from '@mui/material'
 import styled from 'styled-components'
+
+import { auth } from 'firebaseConfig'
 
 import { maxWidth, padding } from 'styles/styles'
 import { COLORS } from 'styles/constants'
@@ -26,7 +31,14 @@ const Container = styled.div`
 `
 
 const Logo = styled.a``
-const User = styled.div`
+
+const User = styled.button`
+  height: 100%;
+  border: none;
+  background-color: transparent;
+`
+
+const ProfilePicture = styled.div`
   height: 22px;
   width: 22px;
   border-radius: 50%;
@@ -39,18 +51,69 @@ const NavbarSpace = styled.div`
   margin-bottom: 30px;
 `
 
-const Navbar = () => (
-  <>
-    <Container>
-      <div>
-        <Logo href="#">
-          <h1>Instagram</h1>
-        </Logo>
-        <User />
-      </div>
-    </Container>
-    <NavbarSpace />
-  </>
-)
+const PopoverLinks = styled.div`
+  padding: 10px;
+`
+
+const PopoverLink = styled.button`
+  border: none;
+  background-color: transparent;
+`
+
+const Navbar = () => {
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const handlePopoverClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null)
+  }
+
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
+
+  const handleLogOut = () => {
+    signOut(auth).catch((error) => {
+      console.log(`ERROR ${error.code} ${error.message}`)
+    })
+  }
+
+  return (
+    <>
+      <Container>
+        <div>
+          <Logo href="#">
+            <h1>Instagram</h1>
+          </Logo>
+
+          <User aria-describedby={id} onClick={handlePopoverClick}>
+            <ProfilePicture />
+          </User>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handlePopoverClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+          >
+            <PopoverLinks>
+              <PopoverLink onClick={handleLogOut}>Log out</PopoverLink>
+            </PopoverLinks>
+          </Popover>
+        </div>
+      </Container>
+      <NavbarSpace />
+    </>
+  )
+}
 
 export default Navbar
