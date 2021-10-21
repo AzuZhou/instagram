@@ -7,6 +7,13 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  #root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
   *, *:before, *:after {
     box-sizing: inherit;
     font-family: 'Noto Sans Display', sans-serif;
