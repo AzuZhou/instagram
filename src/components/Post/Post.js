@@ -84,7 +84,7 @@ const Caption = styled.div`
 // TODO: limit caption length and comments shown
 // TODO: add like and coment functionality
 
-const Post = ({ userName, profilePicture, imageUrl, caption }) => (
+const Post = ({ userName, profilePicture, fileUrl, caption }) => (
   <Container>
     <Header>
       <ProfilePicture>
@@ -94,7 +94,7 @@ const Post = ({ userName, profilePicture, imageUrl, caption }) => (
     </Header>
 
     <Media>
-      <img src={imageUrl} alt="desciption" />
+      <img src={fileUrl} alt="desciption" />
     </Media>
 
     <Actions>

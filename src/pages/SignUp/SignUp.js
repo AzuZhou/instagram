@@ -35,7 +35,7 @@ const Form = styled.form`
   }
 `
 
-const LogIn = () => {
+const SignUp = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -84,4 +84,4 @@ const LogIn = () => {
   )
 }
 
-export default LogIn
+export default SignUp
