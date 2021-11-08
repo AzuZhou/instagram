@@ -13,9 +13,9 @@ const Commenter = styled.a`
 
 // TODO: add profile link
 
-const Comment = ({ userName, text }) => (
+const Comment = ({ username, text }) => (
   <Container>
-    <Commenter href="#">{userName}</Commenter>
+    <Commenter href="#">{username}</Commenter>
     {text}
   </Container>
 )

@@ -59,7 +59,7 @@ const Post = () => {
             timestamp: Timestamp.now(),
             caption,
             fileUrl: downloadURL,
-            userName: auth.currentUser.displayName,
+            username: auth.currentUser.displayName,
             profilePicture: auth.currentUser.photoURL,
           }
 
