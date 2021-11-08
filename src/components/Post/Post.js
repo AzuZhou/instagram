@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { onSnapshot, collection, query, orderBy } from 'firebase/firestore'
 
 import Comment from '../shared/Comment'
+import CommentTextarea from '../CommentTextarea'
 
 import { db } from 'firebaseConfig'
 
@@ -9,12 +10,21 @@ import { ReactComponent as OutlinedLike } from 'icons/like_outlined.svg'
 import { ReactComponent as OutlinedComment } from 'icons/comment_outlined.svg'
 import { ReactComponent as OutlinedShare } from 'icons/share_outlined.svg'
 
-import { Container, Header, ProfilePicture, UserName, Media, Actions, Caption } from './styled'
+import {
+  Container,
+  Header,
+  ProfilePicture,
+  UserName,
+  Media,
+  Actions,
+  Caption,
+  Comments,
+  CommentSection,
+} from './styled'
 
 // TODO: add profile link
 // TODO: add post options (...)
 // TODO: add likes
-// TODO: add comments
 // TODO: limit caption length and comments shown
 // TODO: add like and coment functionality
 
@@ -55,10 +65,16 @@ const Post = ({ username, profilePicture, fileUrl, caption, id }) => {
         <OutlinedShare />
       </Actions>
 
-      <Caption>
-        <Comment username={username} text={caption} />
-        {comments && comments.map(({ id, ...props }) => <Comment key={id} {...props} />)}
-      </Caption>
+      <CommentSection>
+        <Comments>
+          <Caption>
+            <Comment username={username} text={caption} />
+          </Caption>
+          {comments && comments.map(({ id, ...props }) => <Comment key={id} {...props} />)}
+        </Comments>
+
+        <CommentTextarea postId={id} />
+      </CommentSection>
     </Container>
   )
 }

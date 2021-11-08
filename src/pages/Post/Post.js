@@ -108,9 +108,7 @@ const Post = () => {
             onChange={handleCaptionChange}
           />
 
-          <Button type="submit" onClick={handleSubmit}>
-            Submit
-          </Button>
+          <Button type="submit">Submit</Button>
         </CaptionStep>
 
         {showProgress && <LinearProgress variant="determinate" value={progress} />}

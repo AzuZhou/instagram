@@ -67,9 +67,26 @@ const Actions = styled.div`
   }
 `
 
+const Comments = styled.div`
+  width: 100%;
+`
 const Caption = styled.div`
+  width: 100%;
+`
+
+const CommentSection = styled.div`
   width: 100%;
   padding: 0 16px;
 `
 
-export { Container, Header, ProfilePicture, UserName, Media, Actions, Caption }
+export {
+  Container,
+  Header,
+  ProfilePicture,
+  UserName,
+  Media,
+  Actions,
+  CommentSection,
+  Caption,
+  Comments,
+}
