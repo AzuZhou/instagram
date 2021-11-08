@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, query, orderBy } from 'firebase/firestore'
 import { v4 as uuidv4 } from 'uuid'
 
 import Post from '../Post'
@@ -19,7 +19,8 @@ const Feed = () => {
 
   useEffect(() => {
     const getPosts = async () => {
-      const postList = await getDocs(collection(db, 'posts'))
+      const q = query(collection(db, 'posts'), orderBy('timestamp', 'desc'))
+      const postList = await getDocs(q)
       setPosts(postList.docs.map((doc) => ({ ...doc.data(), id: uuidv4() })))
     }
 

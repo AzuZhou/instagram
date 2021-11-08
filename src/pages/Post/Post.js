@@ -1,6 +1,7 @@
 import { useState, forwardRef } from 'react'
+import { useHistory } from 'react-router-dom'
 import { collection, addDoc, Timestamp } from 'firebase/firestore'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import Button from '@mui/material/Button'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
@@ -18,6 +19,7 @@ const Alert = forwardRef(function Alert(props, ref) {
 })
 
 const Post = () => {
+  const history = useHistory()
   const [isMediaPreviewed, setIsMediaPreviewed] = useState(false)
   const [file, setFile] = useState('')
   const [fileUrl, setFileUrl] = useState('')
@@ -40,7 +42,7 @@ const Post = () => {
 
     setShowProgress(true)
     const mediaRef = ref(storage, `media/${file.name}`)
-    const uploadTask = uploadBytes(mediaRef, file)
+    const uploadTask = uploadBytesResumable(mediaRef, file)
 
     uploadTask.on(
       'state_changed',
@@ -63,6 +65,8 @@ const Post = () => {
 
           addDoc(collection(db, 'posts'), newPost)
         })
+
+        history.push('/')
       }
     )
   }
