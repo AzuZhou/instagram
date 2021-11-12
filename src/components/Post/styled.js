@@ -62,7 +62,7 @@ const Actions = styled.div`
   margin-bottom: 8px;
   padding: 0 16px;
 
-  > svg ~ svg {
+  svg ~ svg {
     margin-left: 15px;
   }
 `

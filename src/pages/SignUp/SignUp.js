@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import styled from 'styled-components'
 import { Box, Input, Button } from '@mui/material'
+import { collection, addDoc } from 'firebase/firestore'
 
-import { auth } from 'firebaseConfig'
+import { auth, db } from 'firebaseConfig'
 
 const style = {
   position: 'absolute',
@@ -45,9 +46,21 @@ const SignUp = () => {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        return updateProfile(userCredential.user, {
+        updateProfile(userCredential.user, {
           displayName: username,
         })
+
+        const newUser = {
+          username,
+          profilePicture: '',
+          posts: 0,
+          followers: 0,
+          following: 0,
+          name: '',
+          bio: '',
+        }
+
+        addDoc(collection(db, 'users'), newUser)
       })
       .catch((error) => {
         console.log(`ERROR ${error.code} ${error.message}`)

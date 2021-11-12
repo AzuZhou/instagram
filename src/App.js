@@ -12,6 +12,7 @@ import GlobalStyle from 'styles/globalStyle'
 
 const Home = lazy(() => import('pages/Home'))
 const Post = lazy(() => import('pages/Post'))
+const Profile = lazy(() => import('pages/Profile'))
 const LogIn = lazy(() => import('pages/LogIn'))
 const SignUp = lazy(() => import('pages/SignUp'))
 
@@ -47,6 +48,9 @@ const App = () => {
 
               <PrivateRoute exact path="/" isAuthenticated={user}>
                 <Home />
+              </PrivateRoute>
+              <PrivateRoute exact path="/:username" isAuthenticated={user}>
+                <Profile />
               </PrivateRoute>
               <PrivateRoute exact path="/post" isAuthenticated={user}>
                 <Post />

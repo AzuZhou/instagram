@@ -24,7 +24,7 @@ import {
 
 // TODO: add profile link
 // TODO: add post options (...)
-// TODO: add likes
+// TODO: add likes obj with total and likes, inside likes {userId: {username: 'username'}, userId: {username: 'username'}}
 // TODO: limit caption length and comments shown
 // TODO: add like and coment functionality
 
