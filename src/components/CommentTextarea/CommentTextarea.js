@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 
-import { addDoc, collection, Timestamp } from 'firebase/firestore'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 
 import { db, auth } from 'firebaseConfig'
 
@@ -32,7 +32,7 @@ const CommentTextarea = ({ postId }) => {
     addDoc(collection(db, 'posts', postId, 'comments'), {
       username: auth.currentUser.displayName,
       text: comment,
-      timestamp: Timestamp.now(),
+      timestamp: serverTimestamp(),
     })
 
     setComment('')

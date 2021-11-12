@@ -1,8 +1,12 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
+import { doc, onSnapshot } from 'firebase/firestore'
 
 import Navbar from 'components/Navbar'
 import ProfileInfo from 'components/ProfileInfo'
+
+import { db } from 'firebaseConfig'
 
 const Container = styled.div`
   min-height: 100vh;
@@ -11,15 +15,28 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `
+
 const Profile = () => {
   const { username } = useParams()
+  const [user, setUser] = useState({})
 
-  // TODO: check if user exists by getting user from user collection
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, 'users', username), (doc) => {
+      if (doc.exists()) {
+        setUser({ ...doc.data() })
+      } else {
+        // TODO: redirect 404 or home
+        console.log('No such document!')
+      }
+    })
+
+    return () => unsub()
+  }, [])
 
   return (
     <Container>
       <Navbar />
-      <ProfileInfo profilePicture={''} username={username} />
+      <ProfileInfo profilePicture={user.profilePicture} username={username} />
     </Container>
   )
 }

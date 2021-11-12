@@ -1,6 +1,6 @@
 import { useState, forwardRef } from 'react'
 import { useHistory } from 'react-router-dom'
-import { collection, addDoc, Timestamp } from 'firebase/firestore'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import Button from '@mui/material/Button'
 import Snackbar from '@mui/material/Snackbar'
@@ -37,7 +37,7 @@ const Post = () => {
 
   const handleCaptionChange = ({ target: { value } }) => setCaption(value)
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
     setShowProgress(true)
@@ -56,7 +56,7 @@ const Post = () => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const newPost = {
-            timestamp: Timestamp.now(),
+            timestamp: serverTimestamp(),
             caption,
             fileUrl: downloadURL,
             username: auth.currentUser.displayName,

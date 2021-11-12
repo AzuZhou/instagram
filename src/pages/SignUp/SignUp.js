@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import styled from 'styled-components'
 import { Box, Input, Button } from '@mui/material'
-import { collection, addDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 
 import { auth, db } from 'firebaseConfig'
 
@@ -60,7 +60,7 @@ const SignUp = () => {
           bio: '',
         }
 
-        addDoc(collection(db, 'users'), newUser)
+        setDoc(doc(db, 'users', username), newUser)
       })
       .catch((error) => {
         console.log(`ERROR ${error.code} ${error.message}`)
