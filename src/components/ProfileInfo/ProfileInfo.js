@@ -13,35 +13,38 @@ import { Container, ProfilePicture, Info, Username, Actions, UploadButton, Circl
 // TODO: handle loaders
 // TODO: figure out whether profile pic and disnplayName go in auth or store
 
-const ProfileInfo = ({ profilePicture, username }) => {
+const ProfileInfo = ({ profilePicture, profilePictureName, username }) => {
+  console.log('profilePicture: ', profilePicture)
   const [isOpen, handleModal] = useModal()
-  const [file, setFile] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const handleFileChange = ({ target: { files } }) => {
     const file = files[0]
-    setFile(file)
-
-    handlePhotoUpload()
+    handlePhotoUpload(file)
   }
 
-  const handlePhotoUpload = () => {
+  const handlePhotoUpload = (file) => {
     setIsLoading(true)
     const mediaRef = ref(storage, `users/${auth.currentUser.uid}/${file.name}`)
     const uploadTask = uploadBytesResumable(mediaRef, file)
 
     uploadTask.on(
       'state_changed',
-      null,
+      (snapshot) => {
+        // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        // setProgress(progress)
+      },
       (error) => {
         console.log('error: ', error)
         setIsLoading(false)
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('downloadURL: ', downloadURL)
           const userRef = doc(db, 'users', username)
           updateDoc(userRef, {
             profilePicture: downloadURL,
+            profilePictureName: file.name,
           })
 
           updateProfile(auth.currentUser, {
@@ -56,8 +59,8 @@ const ProfileInfo = ({ profilePicture, username }) => {
   }
 
   const handlePhotoRemoval = () => {
-    if (profilePicture) {
-      const mediaRef = ref(storage, `users/${auth.currentUser.uid}/${file.name}`)
+    if (profilePicture && profilePictureName) {
+      const mediaRef = ref(storage, `users/${auth.currentUser.uid}/${profilePictureName}`)
 
       deleteObject(mediaRef)
         .then(() => {
@@ -73,6 +76,9 @@ const ProfileInfo = ({ profilePicture, username }) => {
         .catch((error) => {
           console.log('error: ', error)
         })
+        .finally(() => {
+          handleModal()
+        })
     }
   }
 
@@ -82,17 +88,13 @@ const ProfileInfo = ({ profilePicture, username }) => {
     <>
       <Container>
         <ProfilePicture>
-          {isOwnProfile && profilePicture && (
+          {isOwnProfile && (
             <button onClick={() => handleModal()}>
-              <Circle>
-                <img src={profilePicture} alt={username} />
-              </Circle>
+              <Circle>{profilePicture ? <img src={profilePicture} alt={username} /> : null}</Circle>
             </button>
           )}
-          {!isOwnProfile && profilePicture && (
-            <Circle>
-              <img src={profilePicture} alt={username} />
-            </Circle>
+          {!isOwnProfile && (
+            <Circle>{profilePicture ? <img src={profilePicture} alt={username} /> : null}</Circle>
           )}
         </ProfilePicture>
 

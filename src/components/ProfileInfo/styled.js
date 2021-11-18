@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { COLORS } from 'styles/constants'
+
 const Container = styled.section`
   width: 500px;
   display: flex;
@@ -10,6 +12,7 @@ const Circle = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50px;
+  background: ${COLORS.lightGrey};
 
   img {
     width: 100%;

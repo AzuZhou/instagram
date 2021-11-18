@@ -36,7 +36,7 @@ const Profile = () => {
   return (
     <Container>
       <Navbar />
-      <ProfileInfo profilePicture={user.profilePicture} username={username} />
+      <ProfileInfo {...user} />
     </Container>
   )
 }
