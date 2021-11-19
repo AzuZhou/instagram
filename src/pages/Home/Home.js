@@ -1,20 +1,10 @@
-import styled from 'styled-components'
-import Navbar from 'components/Navbar'
+import Layout from 'components/shared/Layout'
 import Feed from 'components/Feed'
 
-const Container = styled.div`
-  min-height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
 const Home = () => (
-  <Container>
-    <Navbar />
+  <Layout>
     <Feed />
-  </Container>
+  </Layout>
 )
 
 export default Home

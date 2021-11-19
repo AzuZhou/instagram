@@ -15,12 +15,12 @@ import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
 import LinearProgress from '@mui/material/LinearProgress'
 
-import Navbar from 'components/Navbar'
+import Layout from 'components/shared/Layout'
 import MediaPreview from 'components/MediaPreview'
 
 import { db, auth, storage } from 'firebaseConfig'
 
-import { Container, MediaStep, CaptionStep } from './styled'
+import { MediaStep, CaptionStep } from './styled'
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
@@ -97,9 +97,7 @@ const Post = () => {
   }
 
   return (
-    <Container>
-      <Navbar />
-
+    <Layout>
       <form onSubmit={handleSubmit}>
         <MediaStep>
           <input
@@ -138,7 +136,7 @@ const Post = () => {
 
         {showProgress && <LinearProgress variant="determinate" value={progress} />}
       </form>
-    </Container>
+    </Layout>
   )
 }
 

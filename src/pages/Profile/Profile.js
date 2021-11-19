@@ -3,18 +3,10 @@ import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import { doc, onSnapshot } from 'firebase/firestore'
 
-import Navbar from 'components/Navbar'
+import Layout from 'components/shared/Layout'
 import ProfileInfo from 'components/ProfileInfo'
 
 import { db } from 'firebaseConfig'
-
-const Container = styled.div`
-  min-height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
 
 const Profile = () => {
   const { username } = useParams()
@@ -34,10 +26,9 @@ const Profile = () => {
   }, [username])
 
   return (
-    <Container>
-      <Navbar />
+    <Layout>
       <ProfileInfo {...user} username={username} />
-    </Container>
+    </Layout>
   )
 }
 
