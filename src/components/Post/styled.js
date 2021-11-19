@@ -24,20 +24,6 @@ const Header = styled.div`
   border-bottom: 1px solid ${COLORS.lightGrey};
 `
 
-const ProfilePicture = styled.div`
-  height: 32px;
-  width: 32px;
-  overflow: hidden;
-  border-radius: 50%;
-  background: ${COLORS.lightGrey};
-
-  > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`
-
 const UserName = styled.div`
   margin-left: 14px;
   font-weight: bold;
@@ -81,14 +67,4 @@ const CommentSection = styled.div`
   padding: 0 16px;
 `
 
-export {
-  Container,
-  Header,
-  ProfilePicture,
-  UserName,
-  Media,
-  Actions,
-  CommentSection,
-  Caption,
-  Comments,
-}
+export { Container, Header, UserName, Media, Actions, CommentSection, Caption, Comments }

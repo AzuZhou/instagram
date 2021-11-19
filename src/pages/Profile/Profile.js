@@ -31,7 +31,7 @@ const Profile = () => {
     })
 
     return () => unsub()
-  }, [])
+  }, [username])
 
   return (
     <Container>

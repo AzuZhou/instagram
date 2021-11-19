@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
 import { doc, updateDoc } from 'firebase/firestore'
-import { updateProfile } from 'firebase/auth'
 
 import Modal from 'components/shared/Modal'
 
 import { storage, auth, db } from 'firebaseConfig'
 import { useModal } from 'utils/hooks'
 
-import { Container, ProfilePicture, Info, Username, Actions, UploadButton, Circle } from './styled'
+import { ProfilePicture } from 'styles/styles'
+
+import { Container, Info, Username, Actions, UploadButton } from './styled'
 
 // TODO: handle loaders
 
@@ -77,7 +78,7 @@ const ProfileInfo = ({ profilePicture, profilePictureName, username }) => {
   return (
     <>
       <Container>
-        <ProfilePicture>
+        <ProfilePicture size="100px">
           {isOwnProfile && (
             <button onClick={() => handleModal()}>
               {profilePicture ? <img src={profilePicture} alt={username} /> : null}
