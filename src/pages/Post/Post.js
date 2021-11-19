@@ -74,7 +74,7 @@ const Post = () => {
               likeCount: 0,
               commentCount: 0,
               likes: [],
-              comments: [],
+              // comments: [],
             }
 
             addDoc(collection(db, 'posts'), newPost).then(({ id }) => {

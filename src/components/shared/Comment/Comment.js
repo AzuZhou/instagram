@@ -12,6 +12,8 @@ const Commenter = styled.a`
 `
 
 // TODO: add profile link
+// TODO: delete comment, change commentCount
+// TODO: like comment functionality
 
 const Comment = ({ username, text }) => (
   <Container>
