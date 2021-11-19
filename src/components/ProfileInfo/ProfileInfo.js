@@ -11,10 +11,8 @@ import { useModal } from 'utils/hooks'
 import { Container, ProfilePicture, Info, Username, Actions, UploadButton, Circle } from './styled'
 
 // TODO: handle loaders
-// TODO: figure out whether profile pic and disnplayName go in auth or store
 
 const ProfileInfo = ({ profilePicture, profilePictureName, username }) => {
-  console.log('profilePicture: ', profilePicture)
   const [isOpen, handleModal] = useModal()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -40,15 +38,10 @@ const ProfileInfo = ({ profilePicture, profilePictureName, username }) => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log('downloadURL: ', downloadURL)
           const userRef = doc(db, 'users', username)
           updateDoc(userRef, {
             profilePicture: downloadURL,
             profilePictureName: file.name,
-          })
-
-          updateProfile(auth.currentUser, {
-            photoURL: downloadURL,
           })
         })
 
@@ -67,10 +60,7 @@ const ProfileInfo = ({ profilePicture, profilePictureName, username }) => {
           const userRef = doc(db, 'users', username)
           updateDoc(userRef, {
             profilePicture: '',
-          })
-
-          updateProfile(auth.currentUser, {
-            photoURL: '',
+            profilePictureName: '',
           })
         })
         .catch((error) => {
@@ -90,12 +80,10 @@ const ProfileInfo = ({ profilePicture, profilePictureName, username }) => {
         <ProfilePicture>
           {isOwnProfile && (
             <button onClick={() => handleModal()}>
-              <Circle>{profilePicture ? <img src={profilePicture} alt={username} /> : null}</Circle>
+              {profilePicture ? <img src={profilePicture} alt={username} /> : null}
             </button>
           )}
-          {!isOwnProfile && (
-            <Circle>{profilePicture ? <img src={profilePicture} alt={username} /> : null}</Circle>
-          )}
+          {!isOwnProfile && profilePicture ? <img src={profilePicture} alt={username} /> : null}
         </ProfilePicture>
 
         <Info>

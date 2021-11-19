@@ -49,11 +49,11 @@ const App = () => {
               <PrivateRoute exact path="/" isAuthenticated={user}>
                 <Home />
               </PrivateRoute>
-              <PrivateRoute exact path="/:username" isAuthenticated={user}>
-                <Profile />
-              </PrivateRoute>
               <PrivateRoute exact path="/post" isAuthenticated={user}>
                 <Post />
+              </PrivateRoute>
+              <PrivateRoute path="/:username" isAuthenticated={user}>
+                <Profile />
               </PrivateRoute>
             </Switch>
           </Suspense>

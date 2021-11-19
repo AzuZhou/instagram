@@ -51,13 +51,17 @@ const SignUp = () => {
         })
 
         const newUser = {
-          username,
+          id: userCredential.user.uid,
           profilePicture: '',
-          posts: 0,
-          followers: 0,
-          following: 0,
+          posts: [],
+          followers: [],
+          following: [],
+          postCount: 0,
+          followerCount: 0,
+          followingCount: 0,
           name: '',
           bio: '',
+          website: '',
         }
 
         setDoc(doc(db, 'users', username), newUser)

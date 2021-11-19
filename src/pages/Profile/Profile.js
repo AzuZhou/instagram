@@ -36,7 +36,7 @@ const Profile = () => {
   return (
     <Container>
       <Navbar />
-      <ProfileInfo {...user} />
+      <ProfileInfo {...user} username={username} />
     </Container>
   )
 }

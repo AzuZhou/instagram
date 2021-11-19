@@ -7,10 +7,28 @@ const Container = styled.section`
   display: flex;
   gap: 20px;
 `
-const ProfilePicture = styled.div``
+const ProfilePicture = styled.div`
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50px;
+  background: ${COLORS.lightGrey};
+
+  button {
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`
 const Circle = styled.div`
   width: 100px;
   height: 100px;
+  overflow: hidden;
   border-radius: 50px;
   background: ${COLORS.lightGrey};
 

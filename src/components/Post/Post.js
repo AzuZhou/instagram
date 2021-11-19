@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { onSnapshot, collection, query, orderBy } from 'firebase/firestore'
+import { onSnapshot, collection, query, orderBy, doc, getDoc } from 'firebase/firestore'
 
 import Comment from '../shared/Comment'
 import CommentTextarea from '../CommentTextarea'
@@ -28,10 +28,24 @@ import {
 // TODO: limit caption length and comments shown
 // TODO: add like and coment functionality
 
-const Post = ({ username, profilePicture, fileUrl, caption, id }) => {
+const Post = ({ username, fileUrl, caption, id }) => {
+  const [profilePicture, setProfilePicture] = useState([])
   const [comments, setComments] = useState([])
 
   useEffect(() => {
+    const getProfilePicture = async () => {
+      const userRef = doc(db, 'users', username)
+      const docSnap = await getDoc(userRef)
+      if (docSnap.exists()) {
+        setProfilePicture(docSnap.data().profilePicture)
+      } else {
+        // doc.data() will be undefined in this case
+        console.log('No such document!')
+      }
+    }
+
+    getProfilePicture()
+
     const postRef = collection(db, 'posts', id, 'comments')
     const q = query(postRef, orderBy('timestamp', 'desc'))
 

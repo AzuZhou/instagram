@@ -1,6 +1,14 @@
 import { useState, forwardRef } from 'react'
 import { useHistory } from 'react-router-dom'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  updateDoc,
+  arrayUnion,
+  increment,
+} from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import Button from '@mui/material/Button'
 import Snackbar from '@mui/material/Snackbar'
@@ -54,19 +62,36 @@ const Post = () => {
         console.log('error: ', error)
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const newPost = {
-            timestamp: serverTimestamp(),
-            caption,
-            fileUrl: downloadURL,
-            username: auth.currentUser.displayName,
-            profilePicture: auth.currentUser.photoURL,
-          }
+        getDownloadURL(uploadTask.snapshot.ref)
+          .then((downloadURL) => {
+            const { displayName: username } = auth.currentUser
 
-          addDoc(collection(db, 'posts'), newPost)
-        })
+            const newPost = {
+              timestamp: serverTimestamp(),
+              caption,
+              fileUrl: downloadURL,
+              username,
+              likeCount: 0,
+              commentCount: 0,
+              likes: [],
+              comments: [],
+            }
 
-        history.push('/')
+            addDoc(collection(db, 'posts'), newPost).then(({ id }) => {
+              const userRef = doc(db, 'users', auth.currentUser.displayName)
+
+              updateDoc(userRef, {
+                posts: arrayUnion(id),
+                postCount: increment(1),
+              })
+            })
+          })
+          .catch((error) => {
+            console.log('error: ', error)
+          })
+          .finally(() => {
+            history.push('/')
+          })
       }
     )
   }

@@ -27,11 +27,13 @@ const Header = styled.div`
 const ProfilePicture = styled.div`
   height: 32px;
   width: 32px;
+  overflow: hidden;
   border-radius: 50%;
   background: ${COLORS.lightGrey};
 
   > img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 `
