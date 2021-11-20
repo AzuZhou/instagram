@@ -14,6 +14,7 @@ import {
 
 import Comment from '../shared/Comment'
 import CommentTextarea from '../CommentTextarea'
+import Creation from '../Creation'
 
 import { db, auth } from 'firebaseConfig'
 
@@ -38,10 +39,11 @@ import {
 // TODO: add post options (...)
 // TODO: limit caption length and comments shown
 
-const Post = ({ username, fileUrl, caption, id }) => {
+const Post = ({ username, fileUrl, caption, id, timestamp }) => {
   const [profilePicture, setProfilePicture] = useState([])
   const [comments, setComments] = useState([])
 
+  // TODO:  reuse handleLink for comments
   const handleLike = async () => {
     const postRef = doc(db, 'posts', id)
     const docSnap = await getDoc(postRef)
@@ -78,8 +80,8 @@ const Post = ({ username, fileUrl, caption, id }) => {
 
     getProfilePicture()
 
-    const postRef = collection(db, 'posts', id, 'comments')
-    const q = query(postRef, orderBy('timestamp', 'desc'))
+    const commentsRef = collection(db, 'posts', id, 'comments')
+    const q = query(commentsRef, orderBy('timestamp', 'desc'))
 
     const unsub = onSnapshot(q, (querySnapshot) => {
       let comments = []
@@ -120,6 +122,8 @@ const Post = ({ username, fileUrl, caption, id }) => {
           </Caption>
           {comments && comments.map(({ id, ...props }) => <Comment key={id} {...props} />)}
         </Comments>
+
+        <Creation timestamp={timestamp} />
 
         <CommentTextarea postId={id} />
       </CommentSection>

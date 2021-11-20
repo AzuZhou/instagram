@@ -57,6 +57,7 @@ const Actions = styled.div`
 
 const Comments = styled.div`
   width: 100%;
+  padding: 0 16px;
 `
 const Caption = styled.div`
   width: 100%;
@@ -64,7 +65,6 @@ const Caption = styled.div`
 
 const CommentSection = styled.div`
   width: 100%;
-  padding: 0 16px;
 `
 
 export { Container, Header, UserName, Media, Actions, CommentSection, Caption, Comments }

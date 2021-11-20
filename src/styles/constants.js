@@ -4,7 +4,8 @@ export const FONT_SIZES = {
 
 export const COLORS = {
   black: '#262626',
-  lightGrey: '#dcdcdc',
+  lightGrey: '#dbdbdb',
+  textGrey: '#8e8e8e',
   white: '#ffffff',
   backgroundWhite: 'rgba(250,250,250,1)',
   overlayBlack: 'rgba(0, 0, 0, 0.6)',

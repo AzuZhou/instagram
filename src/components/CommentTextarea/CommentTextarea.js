@@ -7,7 +7,7 @@ import { db, auth } from 'firebaseConfig'
 
 const Container = styled.form`
   width: 100%;
-  padding: 8px 0;
+  padding: 8px 16px;
 
   display: flex;
   justify-content: space-between;

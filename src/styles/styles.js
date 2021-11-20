@@ -6,6 +6,10 @@ export const maxWidth = `
 max-width: 975px;
 `
 
+export const minWidth = `
+min-width: 736px;
+`
+
 export const padding = `padding: 0 20px;`
 
 export const ProfilePicture = styled.div`
