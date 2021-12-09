@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
 import { COLORS } from 'styles/constants'
+import { mobileQuery } from 'styles/styles'
 
 const Container = styled.article`
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   margin-bottom: 30px;
 
   display: flex;
@@ -11,8 +13,12 @@ const Container = styled.article`
   justify-content: center;
   align-items: flex-start;
 
-  border: 1px solid ${COLORS.lightGrey};
-  border-radius: 3px;
+  background-color: ${COLORS.white};
+
+  ${mobileQuery} {
+    border: 1px solid ${COLORS.lightGrey};
+    border-radius: 3px;
+  }
 `
 
 const Header = styled.div`
@@ -21,15 +27,21 @@ const Header = styled.div`
 
   display: inherit;
 
-  border-bottom: 1px solid ${COLORS.lightGrey};
+  border-bottom: 1px solid ${COLORS.dividerGrey};
 `
 
-const UserName = styled.div`
+const UserName = styled.span`
   margin-left: 14px;
   font-weight: bold;
 
   display: flex;
   align-items: center;
+
+  transition: text-decoration 0.1s linear;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 const Media = styled.div`
@@ -48,10 +60,23 @@ const Media = styled.div`
 
 const Actions = styled.div`
   margin-bottom: 8px;
-  padding: 0 16px;
+  padding: 4px 16px;
 
-  svg ~ svg {
-    margin-left: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 14px;
+
+  button {
+    display: inline-flex;
+
+    svg {
+      transition: fill 0.1s linear;
+
+      &:not([aria-label='Unlike']):hover {
+        fill: ${COLORS.textGrey};
+      }
+    }
   }
 `
 

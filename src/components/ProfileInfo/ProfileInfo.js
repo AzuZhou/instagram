@@ -74,7 +74,7 @@ const ProfileInfo = ({ profilePicture, profilePictureName, username }) => {
   }
 
   const isOwnProfile = username === auth.currentUser.displayName
-
+  // TODO: change ProfilePicture's srtructure
   return (
     <>
       <Container>

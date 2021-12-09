@@ -3,6 +3,9 @@ import styled from 'styled-components'
 const Container = styled.p`
   text-align: left;
   margin-bottom: 4px;
+
+  font-size: 14px;
+  line-height: 18px;
 `
 
 const Commenter = styled.a`

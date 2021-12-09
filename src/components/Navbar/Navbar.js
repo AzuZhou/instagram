@@ -1,63 +1,42 @@
-import { useState } from 'react'
-import { signOut } from 'firebase/auth'
-import { Popover } from '@mui/material'
+import { useEffect } from 'react'
+
+import User from 'components/User'
+
+import logo from 'images/logo.png'
+import { ReactComponent as Add } from 'icons/add.svg'
 
 import { auth } from 'firebaseConfig'
+import { useProfilePicture } from 'utils/hooks'
 
 import { ProfilePicture } from 'styles/styles'
 
-import { Container, Logo, User, NavbarSpace, PopoverLinks, PopoverLink } from './styled'
+import { Container, Logo, NavbarSpace, Actions, AddPost } from './styled'
 
 const Navbar = () => {
-  const [anchorEl, setAnchorEl] = useState(null)
+  const [profilePicture, getProfilePicture] = useProfilePicture(auth.currentUser.displayName)
 
-  const handlePopoverClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null)
-  }
-
-  const open = Boolean(anchorEl)
-  const id = open ? 'simple-popover' : undefined
-
-  const handleLogOut = () => {
-    signOut(auth).catch((error) => {
-      console.log(`ERROR ${error.code} ${error.message}`)
-    })
-  }
+  useEffect(() => {
+    getProfilePicture()
+  }, [])
 
   return (
     <>
       <Container>
-        <div>
-          <Logo href="#">
-            <h1>Instagram</h1>
+        <nav>
+          <Logo to="/">
+            <img src={logo} alt="Instagram" />
           </Logo>
 
-          <User aria-describedby={id} onClick={handlePopoverClick}>
-            <ProfilePicture size="22px" />
-          </User>
-          <Popover
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handlePopoverClose}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-          >
-            <PopoverLinks>
-              <PopoverLink onClick={handleLogOut}>Log Out</PopoverLink>
-            </PopoverLinks>
-          </Popover>
-        </div>
+          <Actions>
+            <AddPost to="/post">
+              <Add />
+            </AddPost>
+
+            <User>
+              <ProfilePicture size="22px" img={profilePicture} />
+            </User>
+          </Actions>
+        </nav>
       </Container>
       <NavbarSpace />
     </>

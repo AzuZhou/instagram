@@ -6,11 +6,14 @@ import Post from '../Post'
 
 import { db } from 'firebaseConfig'
 
-import { padding } from 'styles/styles'
+import { padding, mobileQuery } from 'styles/styles'
 
 const Container = styled.section`
-  max-width: 600px;
-  ${padding}
+  padding: 0px;
+
+  ${mobileQuery} {
+    ${padding}
+  }
 `
 
 const Feed = () => {

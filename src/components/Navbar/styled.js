@@ -1,9 +1,10 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-import { maxWidth, padding } from 'styles/styles'
+import { maxWidth, padding, mobileQuery } from 'styles/styles'
 import { COLORS } from 'styles/constants'
 
-const Container = styled.div`
+const Container = styled.header`
   position: fixed;
   z-index: 1;
   width: 100%;
@@ -13,7 +14,7 @@ const Container = styled.div`
   background-color: ${COLORS.white};
   border-bottom: 1px solid ${COLORS.lightGrey};
 
-  > div {
+  > nav {
     height: 54px;
     width: 100%;
     ${maxWidth}
@@ -25,27 +26,31 @@ const Container = styled.div`
   }
 `
 
-const Logo = styled.a``
+const Logo = styled(Link)`
+  height: 36px;
 
-const User = styled.button`
-  height: 100%;
-  border: none;
-  background-color: transparent;
+  img {
+    height: 100%;
+    padding-top: 7px;
+  }
+`
+
+const Actions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 22px;
+`
+
+const AddPost = styled(Link)`
+  display: flex;
 `
 
 const NavbarSpace = styled.div`
   height: 55px;
 
-  margin-bottom: 30px;
+  ${mobileQuery} {
+    margin-bottom: 30px;
+  }
 `
 
-const PopoverLinks = styled.div`
-  padding: 10px;
-`
-
-const PopoverLink = styled.button`
-  border: none;
-  background-color: transparent;
-`
-
-export { Container, Logo, User, NavbarSpace, PopoverLinks, PopoverLink }
+export { Container, Logo, NavbarSpace, Actions, AddPost }

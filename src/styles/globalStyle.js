@@ -43,11 +43,16 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     border: none;
+    background: transparent;
   }
 
   textarea {
-  resize: none;
-}
+    resize: none;
+  }
+ 
+  textarea, p, span {
+    font-size: ${FONT_SIZES.text}
+  }
 `
 
 export default GlobalStyle

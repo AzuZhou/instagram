@@ -7,6 +7,7 @@ import { COLORS } from 'styles/constants'
 
 const Container = styled.p`
   padding: 0 16px;
+  margin-bottom: 16px;
 
   color: ${COLORS.textGrey};
   letter-spacing: 0.2px;

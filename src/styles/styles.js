@@ -6,18 +6,19 @@ export const maxWidth = `
 max-width: 975px;
 `
 
-export const minWidth = `
-min-width: 736px;
-`
-
 export const padding = `padding: 0 20px;`
+
+export const mobileQuery = '@media screen and (min-width: 501px)'
 
 export const ProfilePicture = styled.div`
   width: ${(props) => props.size};
   height: ${(props) => props.size};
   overflow: hidden;
-  border-radius: 50px;
-  background: ${COLORS.lightGrey};
+  border-radius: 50%;
+  background: ${(props) =>
+    props.img
+      ? `center / cover no-repeat url(${props.img}), ${COLORS.lightGrey}`
+      : COLORS.lightGrey};
 
   button {
     width: 100%;
